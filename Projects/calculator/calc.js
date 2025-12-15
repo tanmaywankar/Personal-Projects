@@ -22,6 +22,7 @@ function calculate()
 
     
 }
+
 function appendno(no)
 {
     textbox.value += no;

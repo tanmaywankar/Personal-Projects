@@ -48,23 +48,25 @@ function addCart(){
     let itemTotal = item.price * item.quantity;
     total += itemTotal;
     const html = `
+    <div class="cartTop">
      <div class="cart-item">
                 <div class="cart-info">
                     <p class="prodname">${item.name}</p>
                     <p class="prodPrice">₹${item.price}</p>
                 </div>
                 <div class="itemPrice">
-                <div class = "change">
+                    <div class = "change">
                     <p class="remove" onclick="removeCart('${item.id}')">-</P>
                     <p class = "itemQuantity"> x${item.quantity}</p>
                     <p class="add" onclick="addToCart('${item.id}')">+</P>
-                </div>
+                     </div>
                     <p class="itemTotal">₹${itemTotal}</p>
                 </div>
             </div>
+            
+    </div>
     `;
     cartContainer.innerHTML += html;
-    console.log(item.price);
 
  });
 
