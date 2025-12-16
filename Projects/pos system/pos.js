@@ -11,12 +11,15 @@ const product = [
 let cart =[];
 const container = document.getElementById('product-container');
  const cartContainer = document.getElementById('cart-top');
-  const cartContainerBottom = document.getElementById('cart-bottom');
-window.onload = addCart();
+const cartContainerBottom = document.getElementById('cart-bottom');
+const qty = document.getElementById("itemQuantity");
+let delAll = document.getElementById("deleteAll");
+delAll.addEventListener('click',deleteAll);
 
+window.onload = addCart();
 function addproduct(products){
     const cardHTML = `
-    <div class="card">
+    <div class="card" onclick="addToCart('${products.id}')">
     <div class="card-top">
     <img class= "prod-img" src="${products.image}" alt="">
     </div>
@@ -25,7 +28,7 @@ function addproduct(products){
     <!----<p class="desc">${products.info}</p>------>
     <div class = "pricing">
     <p class="price">₹${products.price}</p>
-    <p class="btn" onclick="addToCart('${products.id}')">+</p>
+    <p class="btn")">+</p>
     </div>
     </div>
     </div>
@@ -50,8 +53,15 @@ function addCart(){
                 </div>
                 <div class="itemPrice">
                     <div class = "change">
+                    <p class="delete" onclick="deleteCart('${item.id}')">Del</P>
                     <p class="remove" onclick="removeCart('${item.id}')">-</P>
-                    <p class = "itemQuantity"> x${item.quantity}</p>
+                    <input
+                    type = "number"
+                    class = "itemQuantity" 
+                    id="itemQuantity" 
+                    value="${item.quantity}"
+                    onchange="updateList('${item.id}',this.value)"
+                    >
                     <p class="add" onclick="addToCart('${item.id}')">+</P>
                      </div>
                     <p class="itemTotal">₹${itemTotal}</p>
@@ -77,7 +87,12 @@ function addCart(){
 
     }
 
-
+    if(cart == ''){
+        delAll.style.visibility="hidden";
+    }
+    else{
+        delAll.style.visibility="visible";
+    }
 }
 
 
@@ -103,6 +118,7 @@ else{
 }
 // console.log(cart);
 addCart();
+qty.addEventListener('click', editQuantity);
 }
 
 
@@ -124,5 +140,46 @@ if(existingItem.quantity<1){
 addCart();
 }
 
+function deleteCart(productId){
+    const index = cart.findIndex(function(p){
+        return p.id === productId;
+    });
+
+    if(index > -1){
+        cart.splice(index, 1);
+    }
+
+    addCart();
+}
+// change quantity using text
+function updateList(productId,newValue){
+let numberQty = parseInt(newValue);
+    const item = cart.find(function(p){
+        return p.id === productId;
+    });
+
+if(numberQty > 0){
+
+
+    if(item){
+        item.quantity = numberQty;
+        addCart();
+    }
+    else{
+       addCart();
+    }
+}
+else if(numberQty <= 0){
+    alert("quantity cannot be less than one");
+    item.quantity = 1;
+    addCart();
+}
+
+}
+
+function deleteAll(){
+
+ addCart();
+}
 
 product.forEach(addproduct);
