@@ -1,5 +1,5 @@
 
-let cart =[];
+let cart = JSON.parse(localStorage.getItem('POS_cart')) || [];
 const container = document.getElementById('product-container');
  const cartContainer = document.getElementById('cart-top');
 const cartContainerBottom = document.getElementById('cart-bottom');
@@ -28,6 +28,8 @@ function addproduct(products){
 }
 
 function addCart() {
+    // save to local storage
+    localStorage.setItem('POS_cart', JSON.stringify(cart));
     // 1. Create a variable to hold the HTML string (instead of writing to the page immediately)
     let cartHTML = ''; 
     let total = 0;
@@ -174,4 +176,25 @@ function deleteAll(){
         
 }
 
-product.forEach(addproduct);
+// product.forEach(addproduct);
+
+function renderProducts(productList){
+ container.innerHTML = '';
+
+ if(productList.length === 0){
+    container.innerHTML = '<p class="ns">No items found</p>';
+    return;
+ }
+ productList.forEach(addproduct);
+}
+renderProducts(product);
+
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input',function(e){
+    const searchText = e.target.value.toLowerCase();
+
+    const filteredList = product.filter(function(item){
+        return item.name.toLowerCase().includes(searchText);
+    });
+    renderProducts(filteredList);
+});
