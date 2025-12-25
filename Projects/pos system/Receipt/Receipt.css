@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px;
+}
+.container{
+    width: 350px;
+    height: 100%;
+}
+.head{
+    font-size: 20px;
+    font-weight: 900;
+    width: 100%;
+    padding: 20px 0px;
+    border-bottom: 1.5px dashed #000;
+}
+.address{
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1.5px dashed #000;
+}
+.dT{
+    font-size: 15px;
+    font-weight: 700;
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: 1.5px dashed #000;
+    margin: 5px 0px;
+}
+.products{
+    display: flex;
+    flex-direction: row;
+    word-wrap: break-word;
+    width: 350px;
+    font-size: 15px;
+    border-bottom: 1px dashed #000;
+}
+.pHead{
+    font-weight: 900;
+    height: 40px;
+    padding-top: 10px;
+    border-bottom: 1px  dashed #000;
+}
+.noTax{
+    font-size: 10px;
+    font-weight: 200;
+}
+.pName{
+    width: 60%;
+}
+.pQuantity{
+    width: 15%;
+}
+.pPrice{
+    width: 20%;
+}
+.pNo{
+    width: 10%;
+}
+.prodNames{
+    font-size: 13px;
+    margin-top: 10px;
+    height: 30px;
+    font-weight: 600;
+}
+.foot{
+    margin: 10px 0px 20px 0px ;
+    display: flex;
+    width: 100%;
+    text-align: right;
+    flex-direction: column;
+}
+.subtotal , .tax{
+    font-size: 12px;
+    margin-right: 20px;
+    font-weight: 600;
+}
+.total{
+    font-size: 20px;
+    margin-right: 20px;
+    font-weight: 900;
+    margin-bottom: 50px;
+}
+
+.purinto{
+    font-family: sans-serif;
+    font-weight: 900;
+    color: #ffffff;
+    height: 50px;
+    width: 350px;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 5px;
+}
+@media print {
+.purinto{
+    visibility: hidden;
+}
+}

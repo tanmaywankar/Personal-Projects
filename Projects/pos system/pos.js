@@ -37,10 +37,12 @@ function addCart() {
     cart.forEach(function(item) {
         let itemTotal = item.price * item.quantity;
         total += itemTotal;
+        let animationClass = item.isNew ? 'slide-in-animation' : '';
+        item.isNew = false;
         
         // 2. Add to our string variable (this is super fast)
         cartHTML += `
-            <div class="cart-item">
+            <div class="cart-item ${animationClass}">
                 <div class="cart-info">
                     <p class="prodname">${item.name}</p>
                     <p class="prodPrice">₹${item.price}</p>
@@ -105,13 +107,14 @@ else{
             id: products.id,
             name: products.name,
             quantity:1,
+            isNew: true,
             price: products.price,
         }
     );
 }
 // console.log(cart);
 addCart();
-qty.addEventListener('click', editQuantity);
+// qty.addEventListener('click', editQuantity);
 }
 
 
@@ -213,3 +216,29 @@ clearBtn.addEventListener('click', function() {
 
     renderProducts(product);
 });
+function checkout(){
+
+    if(cart.length<0){
+        alert("the cart is empty");
+        return;
+    }
+    let subtotal = 0;
+    cart.forEach(item => subtotal += (item.price * item.quantity));
+    const taxAmount = Math.floor(subtotal * 0.18 ); 
+    const granTotal = Math.floor(subtotal + taxAmount);
+
+    const receiptData={
+        cart: cart,
+        subtotal: subtotal,
+        tax: taxAmount,
+        grandTotal: granTotal,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString()
+    };
+
+    localStorage.setItem('receipt_data', JSON.stringify(receiptData));
+
+    window.open('Receipt/Receipt.html', '_blank', 'width=370,height=600');
+    deleteCart();
+
+}

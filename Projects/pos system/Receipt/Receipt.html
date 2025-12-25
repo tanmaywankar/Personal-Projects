@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Printing</title>
+    <link rel="stylesheet" href="Receipt.css">
+</head>
+<body>
+    <div class="container">
+        <p class="purinto" onclick="window.print()">Print</p>
+        <p class="head">Food POS</p>
+        <p class="address">Address: Building No.69 Zest Block, Lemon City</p>
+        <p class="dT" id="dT"></p>
+        <div class="products">
+            <div class="pNo" id="pNo">
+            
+            </div>
+            <div class="pName" id="pName">
+            
+            </div>
+            <div class="pQuantity" id="pQuantity">
+
+            </div>
+            <div class="pPrice" id="pPrice">
+             
+            </div>
+        </div>
+        <div class="foot">
+            <p class="subtotal" id="st"></p>
+            <p class="tax" id="tx"></p>
+            <p class="total" id="tt"></p>
+        </div>
+    </div>
+    <script src="Receipt.js"></script>
+</body>
+</html>
